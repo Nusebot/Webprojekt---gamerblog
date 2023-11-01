@@ -43,7 +43,7 @@ def index():
 def add_new():
     if request.method == 'POST':
         try:
-            skabellerslet = request.form["action"]
+            createordestroy = request.form["action"]
             un = request.form['username']
             pw = request.form['password']
         except:
@@ -56,7 +56,7 @@ def add_new():
         
         
         #Ret/rediger en vare
-        if skabellerslet == "change":
+        if createordestroy == "change":
             id = int(id)
             if id > len(users):
                 print("How den varer fandtes ikke!!")
@@ -68,7 +68,7 @@ def add_new():
             return redirect("/")
         
         #Lav en ny vare
-        elif skabellerslet == "create":
+        elif createordestroy == "create":
             user = {'id': len(users), 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
