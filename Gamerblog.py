@@ -29,7 +29,7 @@ try:
         fixShitPlease()
 
 except:
-    print("Filen havde ikke relevant indhold")
+    print("File did not have relevant information")
     users = []
 
 
@@ -44,19 +44,19 @@ def add_new():
     if request.method == 'POST':
         try:
             skabellerslet = request.form["action"]
-            un = request.form['produkt_navn']
-            pw = request.form['produkt_pris']
+            un = request.form['username']
+            pw = request.form['password']
         except:
             return redirect("/")
         try:
-            id = request.form['vareid']
+            id = request.form['userid']
         except:
             id = "0"
             
         
         
         #Ret/rediger en vare
-        if skabellerslet == "rediger":
+        if skabellerslet == "change":
             id = int(id)
             if id > len(users):
                 print("How den varer fandtes ikke!!")
@@ -68,7 +68,7 @@ def add_new():
             return redirect("/")
         
         #Lav en ny vare
-        elif skabellerslet == "skab":
+        elif skabellerslet == "create":
             user = {'id': len(users), 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
@@ -77,7 +77,7 @@ def add_new():
         
         #Slet varen
         else:
-            print("slet", id)
+            print("destroy", id)
             del users[int(id)]
             fixShitPlease()
             return redirect("/")
