@@ -8,11 +8,11 @@
     <p>Her er hvad, du kan købe:</p>
     <ul>
         {% for vare in varer %}
-        <li>{{vare['navn']}}: <B>({{vare['pris']}} kr. ekskl. pant)</B><br><a href="/buy?item={{vare['id']}}">Køb her.</a><br><br></li>
+        <li>{{user['un']}}: <B>({{user['pw']}})</B><br><a href="/buy?item={{vare['id']}}">This does not work.</a><br><br></li>
         {% endfor %}
     </ul>
     
     <!-- link for at tilføje nye varer -->
-    <a href="/add_new">Klik her for at redigere eller tilføje nye varer</a>
+    <a href="/add_new">Press here to add new user!</a>
 </body>
 </html>

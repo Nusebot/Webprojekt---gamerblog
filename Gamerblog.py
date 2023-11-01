@@ -44,8 +44,8 @@ def add_new():
     if request.method == 'POST':
         try:
             skabellerslet = request.form["action"]
-            navn = request.form['produkt_navn']
-            pris = request.form['produkt_pris']
+            un = request.form['produkt_navn']
+            pw = request.form['produkt_pris']
         except:
             return redirect("/")
         try:
@@ -61,7 +61,7 @@ def add_new():
             if id > len(users):
                 print("How den varer fandtes ikke!!")
                 return redirect("/")
-            user = {'id': id, 'un':pris, 'pw': navn}
+            user = {'id': id, 'un': un, 'pw': pw}
             users[id] = user
             print(f"Users: {users}")
             fixShitPlease()
@@ -69,7 +69,7 @@ def add_new():
         
         #Lav en ny vare
         elif skabellerslet == "skab":
-            user = {'id': len(users), 'un':pris, 'pw': navn}
+            user = {'id': len(users), 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
             fixShitPlease()
