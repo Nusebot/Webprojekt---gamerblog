@@ -36,7 +36,7 @@ except:
 
 @app.route("/")
 def index():
-    return render_template("index.html", users = users)
+    return render_template("frontpage.html", users = users)
 
 
 @app.route("/add_new", methods=["post", "get"])
@@ -82,7 +82,7 @@ def add_new():
             fixShitPlease()
             return redirect("/")
     else:
-        return render_template("add_new.html", users = users )
+        return render_template("login.html", users = users )
 
 if __name__ == "__main__":
     app.run(debug=True, port=6002)
