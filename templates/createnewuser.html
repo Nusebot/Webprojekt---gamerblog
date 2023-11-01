@@ -14,14 +14,6 @@
             <input type="password" id="password" name="password"><br><br>
             
             <br><br>
-
-            <select id="userid" name="userid">
-
-                {% for user in users %}
-                <option value="{{user['id']}}">{{user["id"]}} {{user["un"]}}</option>
-                {% endfor %}
-                
-            </select>
             
             <input type="submit" value="Let's go"> 
         </form>
