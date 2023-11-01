@@ -82,7 +82,7 @@ def add_new():
             fixShitPlease()
             return redirect("/")
     else:
-        return render_template("login.html", users = users )
+        return render_template("adminchangeusers.html", users = users )
 
 if __name__ == "__main__":
     app.run(debug=True, port=6002)
