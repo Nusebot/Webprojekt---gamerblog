@@ -83,6 +83,27 @@ def add_new():
             return redirect("/")
     else:
         return render_template("adminchangeusers.html", users = users )
+    
+@app.route("/createuser", methods=["post", "get"])
+def createuser():
+    if request.method == 'POST':
+        try:
+            un = request.form['username']
+            pw = request.form['password']
+        except:
+            return redirect("/")
+        try:
+            id = request.form['userid']
+        except:
+            id = "0"
+        
+        user = {'id': len(users), 'un': un, 'pw': pw}
+        users.append(user)
+        print(f"Users: {users}")
+        fixShitPlease()
+        return redirect("/")
+    else:
+        return render_template("createnewuser.html", users = users )
 
 if __name__ == "__main__":
     app.run(debug=True, port=6002)
