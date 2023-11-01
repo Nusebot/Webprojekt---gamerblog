@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vareændring</title>
+</head>
+<body>
+    <h1>Rediger butikken. Indtast her</h1>
+    <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
+        <form action="/add_new" method="post">
+            <label for="produkt_navn">Navn:</label>
+            <input type="text" id="produkt_navn" name="produkt_navn"><br><br>
+
+            <label for="produkt_pris">Pris:</label>
+            <input type="number" id="produkt_pris" name="produkt_pris" step="0.01"><br><br>
+            
+            <label for="skab">Nyt produkt:</label>
+            <input type="radio" id="action" name="action" value="skab"><br>
+            <label for="rediger">Rediger produkt:</label>
+            <input type="radio" id="action" name="action" value="rediger"><br>
+            <label for="slet">Slet produkt:</label>
+            <input type="radio" id="action" name="action" value="slet"><br>
+            
+            <br><br>
+
+            <select id="vareid" name="vareid">
+
+                {% for vare in varer %}
+                <option value="{{vare['id']}}">{{vare["id"]}} {{vare["navn"]}}</option>
+                {% endfor %}
+                
+            </select>
+            
+            <input type="submit" value="Udfør!"> 
+        </form>
+    </div>
+    
+    
+    <!-- Link to another page -->
+    <a href="/">Klik her for at gå tilbage til hovedsiden.</a>
+</body>
+</html>
