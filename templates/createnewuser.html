@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vareændring</title>
+</head>
+<body>
+    <h1>Rediger butikken. Indtast her</h1>
+    <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
+        <form action="/add_new" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"><br><br>
+            
+            <br><br>
+
+            <select id="userid" name="userid">
+
+                {% for user in users %}
+                <option value="{{user['id']}}">{{user["id"]}} {{user["un"]}}</option>
+                {% endfor %}
+                
+            </select>
+            
+            <input type="submit" value="Let's go"> 
+        </form>
+    </div>
+    
+    
+    <!-- Link to another page -->
+    <a href="/">Klik her for at gå tilbage til hovedsiden.</a>
+</body>
+</html>
