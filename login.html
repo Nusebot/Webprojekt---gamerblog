@@ -7,30 +7,30 @@
     <h1>Rediger butikken. Indtast her</h1>
     <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
         <form action="/add_new" method="post">
-            <label for="produkt_navn">Navn:</label>
-            <input type="text" id="produkt_navn" name="produkt_navn"><br><br>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"><br><br>
 
-            <label for="produkt_pris">Pris:</label>
-            <input type="number" id="produkt_pris" name="produkt_pris" step="0.01"><br><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"><br><br>
             
-            <label for="skab">Nyt produkt:</label>
-            <input type="radio" id="action" name="action" value="skab"><br>
-            <label for="rediger">Rediger produkt:</label>
-            <input type="radio" id="action" name="action" value="rediger"><br>
-            <label for="slet">Slet produkt:</label>
-            <input type="radio" id="action" name="action" value="slet"><br>
+            <label for="skab">New user:</label>
+            <input type="radio" id="action" name="action" value="create"><br>
+            <label for="rediger">Change user:</label>
+            <input type="radio" id="action" name="action" value="change"><br>
+            <label for="slet">Remove user:</label>
+            <input type="radio" id="action" name="action" value="destroy"><br>
             
             <br><br>
 
-            <select id="vareid" name="vareid">
+            <select id="userid" name="userid">
 
                 {% for vare in varer %}
-                <option value="{{vare['id']}}">{{vare["id"]}} {{vare["navn"]}}</option>
+                <option value="{{user['id']}}">{{user["id"]}} {{user["username"]}}</option>
                 {% endfor %}
                 
             </select>
             
-            <input type="submit" value="Udfør!"> 
+            <input type="submit" value="Let's go"> 
         </form>
     </div>
     
