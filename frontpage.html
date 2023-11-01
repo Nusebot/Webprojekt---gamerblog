@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VæskeShoppen</title>
+</head>
+<body>
+    <h1>Velkommen til VæskeShoppen!</h1>
+    <p>Her er hvad, du kan købe:</p>
+    <ul>
+        {% for vare in varer %}
+        <li>{{vare['navn']}}: <B>({{vare['pris']}} kr. ekskl. pant)</B><br><a href="/buy?item={{vare['id']}}">Køb her.</a><br><br></li>
+        {% endfor %}
+    </ul>
+    
+    <!-- link for at tilføje nye varer -->
+    <a href="/add_new">Klik her for at redigere eller tilføje nye varer</a>
+</body>
+</html>
