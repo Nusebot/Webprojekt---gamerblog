@@ -7,7 +7,7 @@
     <h1>Velkommen til VæskeShoppen!</h1>
     <p>Her er hvad, du kan købe:</p>
     <ul>
-        {% for vare in varer %}
+        {% for user in users %}
         <li>{{user['un']}}: <B>({{user['pw']}})</B><br><a href="/buy?item={{vare['id']}}">This does not work.</a><br><br></li>
         {% endfor %}
     </ul>
