@@ -120,9 +120,9 @@ def login():
         if validate_user(username, password):
             return render_template("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
         else:
-            return render_template("login.html")  # Du kan vise en besked om, at login mislykkedes.
+            return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
 
-    return render_template("login.html", users=users)
+    return render_template("login.html", users=users, failure = False)
 
 
 if __name__ == "__main__":

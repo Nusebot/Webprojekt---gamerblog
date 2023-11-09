@@ -15,6 +15,11 @@
             
             <br><br>
             
+            {% if failure %}
+                <div>Ukendt brugernavn eller forkert password</div>
+            {% endif %}
+            <br><br>
+            
             <input type="submit" value="Log In"> 
             <a href="/createuser">Don't have an account? Click here.</a>
         </form>
