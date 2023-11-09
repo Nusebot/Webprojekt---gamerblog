@@ -11,6 +11,7 @@ body {
 .navbar {
     overflow: hidden;
     background-color: #333;
+    border: 2px solid #242424;
     display: flex;
     justify-content: space-between; /* Distributes items evenly */
     align-items: center; /* Aligns items vertically */
@@ -40,8 +41,31 @@ body {
     background-color: #4fa9f2; /* Change color on hover for the Login button */
 }
 
+.right-buttons {
+    display: flex;
+    gap: 10px; /*This is the gap between The login and Admin distance. */
+}
+
 /* Adjust hover for all buttons except login */
 .navbar a:hover:not(.login-btn) {
+    background-color: #928E8E;
+}
+
+.admin-btn {
+    background-color: #18f264;
+    color: white; /* Ensure text color stays white */
+    padding: 14px 16px;
+    border-radius: 5px; /* Adding rounded corners to the button */
+}
+
+.admin:hover {
+    background-color: #18f264; /* Change color on hover for the Login button */
+}
+.right-buttons {
+    display: flex;
+}
+/* Adjust hover for all buttons except login */
+.navbar a:hover:not(.admin-btn) {
     background-color: #928E8E;
 }
 </style>
@@ -52,9 +76,12 @@ body {
             <a href="/">Home</a>
             <a href="#news">News</a>
         </div>
-        <a href="/login" class="login-btn">Login</a>
-    </div>
-    <a href="/admin_user_change">Press here to add new user!</a>
+        <div class="right-buttons"> <!-- Tilføjet denne klasse -->
+            <a href="/admin_user_change" class="admin-btn">Admin</a>
+            <a href="/login" class="login-btn">Login</a>
+        </div>
+    </div>    
+    <div style="width: 150px; height: 550px; border: 2px solid #333; border-radius: 0px; padding: 20px; text-align: center; font-size: 18px; background-color: #333;">
+        <h1>NEWS</h1>
 </body>
-
 </html>
