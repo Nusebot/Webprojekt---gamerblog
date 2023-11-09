@@ -21,11 +21,13 @@ def fixShitPlease():
     #global varer
     #varer = varer[:]
     updateJson()
+
 def validate_user(username, password):
     for user in users:
         if user['un'] == username and user['pw'] == password:
             return True
     return False
+
 def check_used_username(username):
     for user in users:
         if user['un'] == username:
@@ -107,9 +109,7 @@ def createuser():
         except:
             id = "0"
         
-        check_used_username()
-
-        if check_used_username == True:
+        if check_used_username('username') == True:
             user = {'id': len(users), 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
