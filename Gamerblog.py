@@ -118,7 +118,7 @@ def login():
         password = request.form['password']
 
         if validate_user(username, password):
-            return render_template("frontpage.html")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
+            return redirect("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
         else:
             return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
 
