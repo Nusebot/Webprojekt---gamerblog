@@ -3,20 +3,36 @@
 <head>
     <title>Login</title>
 </head>
+
+<style>
+    .box {
+        background-color: #DB4913;
+        width: 150px;
+        height: 32px;
+        border: 1px;
+        padding: 5px;
+        margin: 0 auto;
+        
+    }
+  
+</style>
+
 <body>
     <h1>Log In!</h1>
     <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
         <form action="/login" method="post">
-            <input type="text" id="username" name="username" placeholder="Username"><br><br>
+            <input type="text" id="username" name="username" placeholder="Username"><br>
 
-            {% if failure %}
-                <div>Unknown username or password</div>
-            {% endif %}
+            
 
             <input type="password" id="password" name="password" placeholder="Password"><br><br>
             
-            <br><br>
-                   
+                        
+            {% if failure %}
+              <div class="box" style="font-size: 13px; color:white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">Unknown username or password</div>
+            {% endif %}
+            <br>
+                        
             <input type="submit" value="Log In"> 
             <br>
             <a href="/createuser">Don't have an account? Click here.</a>

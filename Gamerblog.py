@@ -28,13 +28,13 @@ def validate_user(username, password):
             return True
     return False
 
-def check_used_username(username):
+def check_used_username(username, email):
     for user in users:
-        if user['un'] == username:
+        if user['un'] == username or user['em'] == email:
             return True
     return False
-        
 
+     
 try:
     with open('users.json','r') as usersfile:
         users = json.load(usersfile)
@@ -58,6 +58,7 @@ def add_new():
             createordestroy = request.form["action"]
             un = request.form['username']
             pw = request.form['password']
+            em = request.form['email']
         except:
             return redirect("/")
         try:
@@ -73,7 +74,7 @@ def add_new():
             if id > len(users):
                 print("How den varer fandtes ikke!!")
                 return redirect("/")
-            user = {'id': id, 'un': un, 'pw': pw}
+            user = {'id': id, 'em': em, 'un': un, 'pw': pw}
             users[id] = user
             print(f"Users: {users}")
             fixShitPlease()
@@ -81,7 +82,7 @@ def add_new():
         
         #Lav en ny vare
         elif createordestroy == "create":
-            user = {'id': len(users), 'un': un, 'pw': pw}
+            user = {'id': len(users), 'em': em, 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
             fixShitPlease()
@@ -102,6 +103,7 @@ def createuser():
         try:
             un = request.form['username']
             pw = request.form['password']
+            em = request.form['email']
         except:
             return redirect("/")
         try:
@@ -109,15 +111,18 @@ def createuser():
         except:
             id = "0"
         
-        if not check_used_username(un):
-            user = {'id': len(users), 'un': un, 'pw': pw}
+        if not check_used_username(un, em):
+            user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
             fixShitPlease()
             return redirect("/")  
-        else: return render_template("createnewuser.html", username_exists = True, users = users)
+        else: return render_template("createnewuser.html", username_or_email_exists = True, users = users)
+            
     else:
         return render_template("createnewuser.html", users = users )
+
+
 
 @app.route("/login", methods=["post", "get"])
 def login():

@@ -3,22 +3,36 @@
 <head>
     <title>New User</title>
 </head>
+
+<style>
+    .box {
+        background-color: #DB4913;
+        width: 150px;
+        height: 32px;
+        border: 1px;
+        padding: 5px;
+        margin: 0 auto;
+        
+    }
+  
+</style>
+
 <body>
     <h1>Create your user now!</h1>
     <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
         <form action="/createuser" method="post">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"><br><br>
+            <input type="text" id="email" name="email" placeholder="Email"><br>
+            <input type="text" id="username" name="username" placeholder="Username"><br>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"><br><br>
+            <input type="password" id="password" name="password" placeholder="Password"><br><br>
             
-            <br><br>
             
-            {% if username_exists %}
-                <div>The username is already in use</div>
+            {% if username_or_email_exists %}
+                <div class="box" style="font-size: 13px; color:white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">This username (or email) already exists</div>
             {% endif %}
-
+            
+            <br>
+            
             <input type="submit" value="Let's go"> 
         </form>
     </div>
