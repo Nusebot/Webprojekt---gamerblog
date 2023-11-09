@@ -5,13 +5,8 @@
 </head>
 <body>
     <h1>Welcome to the Gamerblog</h1>
-    <p>Her er hvad, du kan købe:</p>
-    <ul>
-        {% for user in users %}
-        <li>{{user['un']}}: <B>({{user['pw']}})</B><br><a href="/buy?item={{user['id']}}">This does not work.</a><br><br></li>
-        {% endfor %}
-    </ul>
-    
+    <p>Here are some of the games:</p>
+        
     <!-- link for at tilføje nye varer -->
     <a href="/admin_user_change">Press here to add new user!</a>
     <br>
