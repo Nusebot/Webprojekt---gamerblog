@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vareændring</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>Rediger butikken. Indtast her</h1>
+    <h1>Log In!</h1>
     <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
-        <form action="/add_new" method="post">
+        <form action="/login" method="post">
             <label for="username">Username</label>
             <input type="text" id="username" name="username"><br><br>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password"><br><br>
             
-            <label for="skab">New user:</label>
-            <input type="radio" id="action" name="action" value="create"><br>
-            <label for="rediger">Change user:</label>
-            <input type="radio" id="action" name="action" value="change"><br>
-            <label for="slet">Remove user:</label>
-            <input type="radio" id="action" name="action" value="destroy"><br>
-            
             <br><br>
-
-            <select id="userid" name="userid">
-
-                {% for user in users %}
-                <option value="{{user['id']}}">{{user["id"]}} {{user["un"]}}</option>
-                {% endfor %}
-                
-            </select>
             
-            <input type="submit" value="Let's go"> 
+            <input type="submit" value="Log In"> 
+            <a href="/createuser">Don't have an account? Click here.</a>
         </form>
     </div>
     
