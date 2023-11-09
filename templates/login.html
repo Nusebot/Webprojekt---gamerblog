@@ -14,12 +14,23 @@
             {% endif %}
 
             <input type="password" id="password" name="password" placeholder="Password"><br><br>
-            
+            <input type="checkbox" onclick="showPassword()"> <b>Show Password</b>
             <br><br>
                    
             <input type="submit" value="Log In"> 
             <br>
-            <a href="/createuser">Don't have an account? Click here.</a>
+            <a href="/createuser">Don't have an account? Click here.</a> 
+
+            <script>
+                function showPassword() {
+                    var passwordField = document.getElementById("password");
+                    if (passwordField.type === "password") {
+                        passwordField.type = "text";
+                    } else {
+                        passwordField.type = "password";
+                    }
+                }
+            </script>
         </form>
     </div>
     
