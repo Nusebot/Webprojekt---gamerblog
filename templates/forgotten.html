@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>ForgottenPassword</title>
 </head>
 
 <style>
@@ -18,28 +18,25 @@
 </style>
 
 <body>
-    <h1>Log In!</h1>
+    <h1>Forgotten your password? Change it now</h1>
     <div style="width: 300px; height: 200px; border: 2px solid #3498db; border-radius: 10px; padding: 20px; text-align: center; font-size: 18px; background-color: #f0f0f0;">
-        <form action="/login" method="post">
-            <input type="text" id="username" name="username" placeholder="Username"><br>
+        <form action="/login/forgottenPassword" method="post">
+            <input type="text" id="email" name="email" placeholder="Email"><br>
 
-            
+            <input type="password" id="newpassword" name="newpassword" placeholder="New Password"><br>
+            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"><br>
 
-            <input type="password" id="password" name="password" placeholder="Password"><br>
             <input type="checkbox" onclick="showPassword()"> <b>Show Password</b>
             <br><br>
                         
             {% if failure %}
-              <div class="box" style="font-size: 13px; color:white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">Unknown username or password</div>
-              <a href="/login/forgottenPassword">Forgotten your password?</a>
+              <div class="box" style="font-size: 13px; color:white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">There is no account with this email</div>
             {% endif %}
             <br><br>
-                        
-            
-                   
+                                        
             <input type="submit" value="Log In"> 
             <br>
-            <a href="/createuser">Don't have an account? Click here.</a> 
+            <a href="/login">Nevermind.</a> 
 
             <script>
                 function showPassword() {

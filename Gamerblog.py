@@ -34,6 +34,13 @@ def check_used_username_or_email(username, email):
             return True
     return False
 
+def validate_email(email):
+    for user in users:
+        if user['em'] == email:
+            return True
+    return False
+
+
      
 try:
     with open('users.json','r') as usersfile:
@@ -136,6 +143,19 @@ def login():
             return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
 
     return render_template("login.html", users=users, failure = False)
+
+@app.route("/login/forgottenPassword", methods=["post", "get"])
+def forgotten_password():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if validate_user(username, password):
+            return redirect("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
+        else:
+            return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
+
+    return render_template("forgotten.html", users=users, failure = False)
 
 
 if __name__ == "__main__":
