@@ -107,7 +107,7 @@ def createuser():
 
 @app.route("/login", methods=["post", "get"])
 def login():
-    return render_template("login", users = users )
+    return render_template("login.html", users = users )
 
 if __name__ == "__main__":
     app.run(debug=True, port=6002)
