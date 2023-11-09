@@ -26,7 +26,11 @@ def validate_user(username, password):
         if user['un'] == username and user['pw'] == password:
             return True
     return False
-
+def check_used_username(username):
+    for user in users:
+        if user['un'] == username:
+            return False
+    return True
         
 
 try:

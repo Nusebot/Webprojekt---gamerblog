@@ -15,6 +15,10 @@
             
             <br><br>
             
+            {% if failure %}
+                <div>The username is allready in use</div>
+            {% endif %}
+
             <input type="submit" value="Let's go"> 
         </form>
     </div>
