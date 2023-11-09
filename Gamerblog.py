@@ -28,7 +28,7 @@ def validate_user(username, password):
             return True
     return False
 
-def check_used_username(username, email):
+def check_used_username_or_email(username, email):
     for user in users:
         if user['un'] == username or user['em'] == email:
             return True
@@ -111,7 +111,7 @@ def createuser():
         except:
             id = "0"
         
-        if not check_used_username(un, em):
+        if not check_used_username_or_email(un, em):
             user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
