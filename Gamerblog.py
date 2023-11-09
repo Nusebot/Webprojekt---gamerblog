@@ -31,8 +31,8 @@ def validate_user(username, password):
 def check_used_username(username):
     for user in users:
         if user['un'] == username:
-            return False
-    return True
+            return True
+    return False
         
 
 try:
@@ -109,12 +109,13 @@ def createuser():
         except:
             id = "0"
         
-        if check_used_username('username') == True:
+        if not check_used_username(un):
             user = {'id': len(users), 'un': un, 'pw': pw}
             users.append(user)
             print(f"Users: {users}")
             fixShitPlease()
             return redirect("/")  
+        else: return render_template("createnewuser.html", username_exists = True, users = users)
     else:
         return render_template("createnewuser.html", users = users )
 
