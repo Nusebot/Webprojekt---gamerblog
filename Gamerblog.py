@@ -103,7 +103,8 @@ def add_new():
             return redirect("/")
     else:
         return render_template("adminchangeusers.html", users = users )
-    
+
+
 @app.route("/createuser", methods=["post", "get"])
 def createuser():
     if request.method == 'POST':
@@ -136,6 +137,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        
 
         if validate_user(username, password):
             return redirect("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
@@ -144,17 +146,25 @@ def login():
 
     return render_template("login.html", users=users, failure = False)
 
+
 @app.route("/login/forgottenPassword", methods=["post", "get"])
 def forgotten_password():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        email = request.form['email']
+        newpassword = request.form['newpassword']
+        confirm = request.form['confirmpassword']
 
-        if validate_user(username, password):
-            return redirect("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
-        else:
-            return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
-
+        if newpassword == confirm:
+            if validate_email(email):
+                for user in users:
+                    if user['em'] == email:  # Find the user by email
+                        user['pw'] = newpassword  # Update the password
+                print(f"Users: {users}")
+                fixShitPlease()
+                return redirect("/login")  
+                # Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
+            else:
+                return render_template("forgotten.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
     return render_template("forgotten.html", users=users, failure = False)
 
 

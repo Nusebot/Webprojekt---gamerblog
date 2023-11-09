@@ -7,8 +7,8 @@
 <style>
     .box {
         background-color: #DB4913;
-        width: 150px;
-        height: 32px;
+        width: 200px;
+        height: 30px;
         border: 10px;
         padding: 5px;
         margin: 0 auto;
@@ -16,6 +16,18 @@
     }
   
 </style>
+
+<script>
+    function showPassword() {
+        var passwordField = document.getElementById("newpassword");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
+
 
 <body>
     <h1>Forgotten your password? Change it now</h1>
@@ -26,28 +38,22 @@
             <input type="password" id="newpassword" name="newpassword" placeholder="New Password"><br>
             <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"><br>
 
-            <input type="checkbox" onclick="showPassword()"> <b>Show Password</b>
-            <br><br>
+            <input type="checkbox" onclick="showPassword()"> <b>Show New Password</b>
+            <br>
                         
             {% if failure %}
-              <div class="box" style="font-size: 13px; color:white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">There is no account with this email</div>
+                <div class="box" style="font-size: 12px; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 700;">
+                There is no account with this email. Or the passwords do not match.
+                </div>
             {% endif %}
-            <br><br>
+
+            <br>
                                         
-            <input type="submit" value="Log In"> 
+            <input type="submit" value="Change Password"> 
             <br>
             <a href="/login">Nevermind.</a> 
 
-            <script>
-                function showPassword() {
-                    var passwordField = document.getElementById("password");
-                    if (passwordField.type === "password") {
-                        passwordField.type = "text";
-                    } else {
-                        passwordField.type = "password";
-                    }
-                }
-            </script>
+            
         </form>
     </div>
     
