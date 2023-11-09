@@ -107,11 +107,14 @@ def createuser():
         except:
             id = "0"
         
-        user = {'id': len(users), 'un': un, 'pw': pw}
-        users.append(user)
-        print(f"Users: {users}")
-        fixShitPlease()
-        return redirect("/")
+        check_used_username()
+
+        if check_used_username == True:
+            user = {'id': len(users), 'un': un, 'pw': pw}
+            users.append(user)
+            print(f"Users: {users}")
+            fixShitPlease()
+            return redirect("/")  
     else:
         return render_template("createnewuser.html", users = users )
 
