@@ -21,6 +21,12 @@ def fixShitPlease():
     #global varer
     #varer = varer[:]
     updateJson()
+def validate_user(username, password):
+    for user in users:
+        if user['un'] == username and user['pw'] == password:
+            return True
+    return False
+
         
 
 try:
@@ -107,7 +113,17 @@ def createuser():
 
 @app.route("/login", methods=["post", "get"])
 def login():
-    return render_template("login.html", users = users )
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if validate_user(username, password):
+            return "Login successful"  # Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
+        else:
+            return "Login failed"  # Du kan vise en besked om, at login mislykkedes.
+
+    return render_template("login.html", users=users)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=6002)
