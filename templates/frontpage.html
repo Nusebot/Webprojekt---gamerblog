@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Gamerblog</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Linking an external CSS file -->
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -10,10 +11,17 @@ body {
 .navbar {
     overflow: hidden;
     background-color: #333;
+    display: flex;
+    justify-content: space-between; /* Distributes items evenly */
+    align-items: center; /* Aligns items vertically */
+    padding: 0 20px; /* Added padding for space around the buttons */
+}
+
+.left-buttons {
+    display: flex;
 }
 
 .navbar a {
-    float: left;
     font-size: 16px;
     color: white;
     text-align: center;
@@ -21,24 +29,30 @@ body {
     text-decoration: none;
 }
 
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-.dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
+.login-btn {
+    background-color: #1890f2;
+    color: white; /* Ensure text color stays white */
     padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
+    border-radius: 5px; /* Adding rounded corners to the button */
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #928E8E
+.login-btn:hover {
+    background-color: #4fa9f2; /* Change color on hover for the Login button */
+}
+
+/* Adjust hover for all buttons except login */
+.navbar a:hover:not(.login-btn) {
+    background-color: #928E8E;
+}
+
+/* Dropdown styles (if any) */
+/* ... */
+
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
@@ -46,12 +60,11 @@ body {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
-    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -66,16 +79,18 @@ body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 </style>
 </head>
-<div class="navbar">
-    <a href="/">Home</a>
-    <a href="#news">News</a>
-    <a href="/login">Login</a>
-  </div>
-    <!-- link for at tilføje nye varer -->
+<body>
+    <div class="navbar">
+        <div class="left-buttons">
+            <a href="/">Home</a>
+            <a href="#news">News</a>
+        </div>
+        <a href="/login" class="login-btn">Login</a>
+    </div>
     <a href="/admin_user_change">Press here to add new user!</a>
-    <br>
-    <a href="/login">Log In</a>
 </body>
+
 </html>
