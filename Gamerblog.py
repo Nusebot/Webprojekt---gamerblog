@@ -39,7 +39,7 @@ def index():
     return render_template("frontpage.html", users = users)
 
 
-@app.route("/add_new", methods=["post", "get"])
+@app.route("/admin_user_change", methods=["post", "get"])
 def add_new():
     if request.method == 'POST':
         try:
