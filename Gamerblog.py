@@ -83,12 +83,12 @@ def add_new():
                 print("Hov den varer fandtes ikke!!")
                 return redirect("/")
 
-            #elif not check_used_username_or_email(un, em):
-            #    user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
-            #    users[id] = user
-            #    print(f"Users: {users}")
-            #    fixShitPlease()
-            #    return redirect("/") 
+            elif not check_used_username_or_email(un, em):
+                user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
+                users[id] = user
+                print(f"Users: {users}")
+                fixShitPlease()
+                return redirect("/") 
             else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users) 
         
         #Lav en ny konto
