@@ -156,6 +156,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     session.pop('username', None)
+    session.clear()
     return redirect("/")
 
 
