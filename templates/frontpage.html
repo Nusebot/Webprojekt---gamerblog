@@ -78,14 +78,14 @@
             <a href="#news">News</a>
         </div>
         <div class="right-buttons">
-            {% if 'logged_in' and 'admin' in session %}
-            <a href="/admin_user_change" class="admin-btn">Admin</a>
+            {% if 'logged_in' and session.get('admin') %}
+                <a href="/admin_user_change" class="admin-btn">Admin</a>
             {% endif %}
             <img src="user-png-icon-big-image-png-2240-3296597834.png">
             {% if 'logged_in' not in session %}
-            <a href="/login" class="login-btn">Login</a>
+                <a href="/login" class="login-btn">Login</a>
             {% else %}
-            <a href="/logout" class="logout-btn">Log out</a>
+                <a href="/logout" class="logout-btn">Log out</a>
             {% endif %}
         </div>
     </div>
