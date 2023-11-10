@@ -79,19 +79,23 @@ def add_new():
             if id > len(users):
                 print("How den varer fandtes ikke!!")
                 return redirect("/")
-            user = {'id': id, 'em': em, 'un': un, 'pw': pw}
-            users[id] = user
-            print(f"Users: {users}")
-            fixShitPlease()
-            return redirect("/")
+            elif not check_used_username_or_email(un, em):
+                user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
+                users[id] = user
+                print(f"Users: {users}")
+                fixShitPlease()
+                return redirect("/") 
+            else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users) 
         
         #Lav en ny vare
         elif createordestroy == "create":
-            user = {'id': len(users), 'em': em, 'un': un, 'pw': pw}
-            users.append(user)
-            print(f"Users: {users}")
-            fixShitPlease()
-            return redirect("/")
+            if not check_used_username_or_email(un, em):
+                user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
+                users.append(user)
+                print(f"Users: {users}")
+                fixShitPlease()
+                return redirect("/")
+            else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users)  
         
         #Slet varen
         else:
@@ -110,6 +114,7 @@ def createuser():
             un = request.form['username']
             pw = request.form['password']
             em = request.form['email']
+            email = request.form['email']
         except:
             return redirect("/")
         try:
