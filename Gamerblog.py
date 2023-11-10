@@ -144,6 +144,8 @@ def login():
 
         if validate_user(username, password):
             session['logged_in'] = True
+            admin_usernames = ['Vedad', 'Linus']
+            session['admin'] = True if username in admin_usernames else False
             return redirect("/")
         else:
             return render_template("login.html", failure=True)
