@@ -73,14 +73,14 @@ def add_new():
             
         
         
-        #Ret/rediger en vare
+        #Ret/rediger en konto
         if createordestroy == "change":
             id = int(id)
             users[id]['email'] = em
             users[id]['username'] = un
             users[id]['password'] = pw
             if id > len(users):
-                print("How den varer fandtes ikke!!")
+                print("Hov den varer fandtes ikke!!")
                 return redirect("/")
 
             #elif not check_used_username_or_email(un, em):
@@ -91,7 +91,7 @@ def add_new():
             #    return redirect("/") 
             else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users) 
         
-        #Lav en ny vare
+        #Lav en ny konto
         elif createordestroy == "create":
             if not check_used_username_or_email(un, em):
                 user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
@@ -101,7 +101,7 @@ def add_new():
                 return redirect("/")
             else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users)  
         
-        #Slet varen
+        #Slet en konto
         else:
             print("destroy", id)
             del users[int(id)]
