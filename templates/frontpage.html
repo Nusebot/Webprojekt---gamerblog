@@ -1,88 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Gamerblog</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Linking an external CSS file -->
-<style>
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    border: 2px solid #242424;
-    display: flex;
-    justify-content: space-between; /* Distributes items evenly */
-    align-items: center; /* Aligns items vertically */
-    padding: 0 20px; /* Added padding for space around the buttons */
-}
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            border: 2px solid #242424;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-.left-buttons {
-    display: flex;
-}
+        .left-buttons {
+            display: flex;
+        }
 
-.navbar a {
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+        .navbar a {
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-.login-btn {
-    background-color: #1890f2;
-    color: white; /* Ensure text color stays white */
-    padding: 14px 16px;
-    border-radius: 5px; /* Adding rounded corners to the button */
-}
+        .login-btn,
+        .admin-btn {
+            color: white;
+            padding: 14px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s; /* Adding smooth transition on background color change */
+        }
 
-.login-btn:hover {
-    background-color: #4fa9f2; /* Change color on hover for the Login button */
-}
+        .login-btn {
+            background-color: #1890f2;
+        }
 
-.right-buttons {
-    display: flex;
-    gap: 10px; /*This is the gap between The login and Admin distance. */
-}
+        .login-btn:hover {
+            background-color: #4fa9f2;
+        }
 
-/* Adjust hover for all buttons except login */
-.navbar a:hover:not(.login-btn) {
-    background-color: #928E8E;
-}
+        .admin-btn {
+            background-color: #18f264;
+        }
 
-.admin-btn {
-    background-color: #18f264;
-    color: white; /* Ensure text color stays white */
-    padding: 14px 16px;
-    border-radius: 5px; /* Adding rounded corners to the button */
-}
+        .admin-btn:hover {
+            background-color: #18f264;
+        }
 
-.admin:hover {
-    background-color: #18f264; /* Change color on hover for the Login button */
-}
-.right-buttons {
-    display: flex;
-}
-/* Adjust hover for all buttons except login */
-.navbar a:hover:not(.admin-btn) {
-    background-color: #928E8E;
-}
-</style>
+        /* Adjust hover for all buttons except login and admin */
+        .navbar a:hover:not(.login-btn):not(.admin-btn) {
+            background-color: #928E8E;
+        }
+    </style>
 </head>
+
 <body>
     <div class="navbar">
         <div class="left-buttons">
             <a href="/">Home</a>
             <a href="#news">News</a>
         </div>
-        <div class="right-buttons"> <!-- Tilføjet denne klasse -->
+        <div class="right-buttons">
             <a href="/admin_user_change" class="admin-btn">Admin</a>
+            {% if not lg %}
             <a href="/login" class="login-btn">Login</a>
+            {% endif %}
+            {% if lg %}
+            <a href="/login" class="login-btn">Log Out</a>
+            {% endif %}
         </div>
-    </div>    
+    </div>
     <div style="width: 150px; height: 550px; border: 2px solid #333; border-radius: 0px; padding: 20px; text-align: center; font-size: 18px; background-color: #333;">
         <h1>NEWS</h1><br><br>
-        <img src="fortnite.jpg"
+        <img src="fortnite.jpg" alt="Fortnite Image"> <!-- Added missing alt attribute -->
+    </div>
 </body>
+
 </html>
