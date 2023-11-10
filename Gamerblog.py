@@ -26,11 +26,12 @@ def validate_user(username, password):
             return True
     return False
 
-def check_used_username_or_email(username, email):
+def check_used_username_or_email(username, email, exclude_user_id=None):
     for user in users:
-        if user['un'] == username or user['em'] == email:
+        if user['id'] != exclude_user_id and (user['un'] == username or user['em'] == email):
             return True
     return False
+
 
 def validate_email(email):
     for user in users:
@@ -73,23 +74,29 @@ def add_new():
             
         
         
-        #Ret/rediger en konto
+        # Ret/rediger en konto
         if createordestroy == "change":
             id = int(id)
-            users[id]['email'] = em
-            users[id]['username'] = un
-            users[id]['password'] = pw
-            if id > len(users):
-                print("Hov den varer fandtes ikke!!")
-                return redirect("/")
+    
+            # Check if the provided email corresponds to the user's email
+            if users[id]['em'] == em:
+                # Check if the new email is already used (excluding the current user)
+                if not check_used_username_or_email(un, em, exclude_user_id=id):
+                    # Update the user's information
+                    users[id]['email'] = em
+                    users[id]['username'] = un
+                    users[id]['password'] = pw
 
-            elif not check_used_username_or_email(un, em):
-                user = {'id': len(users),'em': em, 'un': un, 'pw': pw}
-                users[id] = user
-                print(f"Users: {users}")
-                fixShitPlease()
-                return redirect("/") 
-            else: return render_template("adminchangeusers.html", username_or_email_exists = True, users = users) 
+                    fixShitPlease()
+                    return redirect("/") 
+                else:
+                    # Render template with a message about other users using the new username or email
+                    return render_template("adminchangeusers.html", username_or_email_exists=True, users=users)
+            else:
+                # Render template with a message about incorrect email
+                return render_template("adminchangeusers.html", incorrect_email=True, users=users)
+
+
         
         #Lav en ny konto
         elif createordestroy == "create":
