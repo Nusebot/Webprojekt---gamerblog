@@ -135,6 +135,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        session['username'] = request.form['username']
 
         if validate_user(username, password):
             session['logged_in'] = True
@@ -147,6 +148,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop('logged_in', None)
+    session.pop('username', None)
     return redirect("/")
 
 
