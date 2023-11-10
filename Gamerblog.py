@@ -144,6 +144,11 @@ def login():
 
     return render_template("login.html", users=users, failure=False)
 
+@app.route("/logout")
+def logout():
+    session.pop('logged_in', None)
+    return redirect("/")
+
 
 @app.route("/login/forgottenPassword", methods=["post", "get"])
 def forgotten_password():

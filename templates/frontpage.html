@@ -32,7 +32,8 @@
         }
 
         .login-btn,
-        .admin-btn {
+        .admin-btn,
+        .logout-btn {
             color: white;
             padding: 14px 16px;
             border-radius: 5px;
@@ -81,7 +82,7 @@
             {% if 'logged_in' not in session %}
             <a href="/login" class="login-btn">Login</a>
             {% else %}
-            <a href="/login" class="login-btn">Log Out</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
             {% endif %}
         </div>
     </div>
