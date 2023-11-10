@@ -1,12 +1,10 @@
 #Moduler fra flask
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
-
+from flask import Flask, render_template, request, redirect, session
 import json
 
 app = Flask(__name__)
+
+app.secret_key = 'your_secret_key'  # Dette skal være en stærk og unik nøgle
 
 
 users= []
@@ -137,14 +135,14 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
 
         if validate_user(username, password):
-            return redirect("/")# Du kan ændre denne del til at omdirigere brugeren til en anden side efter vellykket login.
+            session['logged_in'] = True
+            return redirect("/")
         else:
-            return render_template("login.html", failure = True)  # Du kan vise en besked om, at login mislykkedes.
+            return render_template("login.html", failure=True)
 
-    return render_template("login.html", users=users, failure = False)
+    return render_template("login.html", users=users, failure=False)
 
 
 @app.route("/login/forgottenPassword", methods=["post", "get"])
