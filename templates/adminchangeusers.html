@@ -40,7 +40,7 @@
             <select id="userid" name="userid">
 
                 {% for user in users %}
-                <option value="{{user['id']}}">{{user["id"]}} {{user["un"]}}</option>
+                <option value="{{user['id']}}">{{user["id"]}} {{user["un"]}}: {{user["em"]}}</option>
                 {% endfor %}
                 
             </select>
