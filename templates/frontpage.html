@@ -65,7 +65,7 @@
         }
 
         /* Adjust hover for all buttons except login and admin */
-        .navbar a:hover:not(.login-btn):not(.admin-btn) {
+        .navbar a:hover:not(.login-btn):not(.admin-btn):not(.logout-btn) {
             background-color: #928E8E;
         }
     </style>
@@ -82,7 +82,7 @@
             {% if 'logged_in' not in session %}
             <a href="/login" class="login-btn">Login</a>
             {% else %}
-            <a href="/logout" class="logout-btn">Log Out</a>
+            <a href="/logout" class="logout-btn">Log out</a>
             {% endif %}
         </div>
     </div>
