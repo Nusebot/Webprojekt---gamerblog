@@ -70,10 +70,9 @@
         </div>
         <div class="right-buttons">
             <a href="/admin_user_change" class="admin-btn">Admin</a>
-            {% if not lg %}
+            {% if 'logged_in' not in session %}
             <a href="/login" class="login-btn">Login</a>
-            {% endif %}
-            {% if lg %}
+            {% else %}
             <a href="/login" class="login-btn">Log Out</a>
             {% endif %}
         </div>

@@ -23,7 +23,6 @@ def fixShitPlease():
 def validate_user(username, password):
     for user in users:
         if user['un'] == username and user['pw'] == password:
-            lg = True
             return True
     return False
 
