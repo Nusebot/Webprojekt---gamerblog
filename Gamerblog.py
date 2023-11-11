@@ -83,9 +83,9 @@ def add_new():
                 # Check if the new email is already used (excluding the current user)
                 if not check_used_username_or_email(un, em, exclude_user_id=id):
                     # Update the user's information
-                    users[id]['email'] = em
-                    users[id]['username'] = un
-                    users[id]['password'] = pw
+                    users[id]['em'] = em
+                    users[id]['un'] = un
+                    users[id]['pw'] = pw
 
                     fixShitPlease()
                     return redirect("/") 
