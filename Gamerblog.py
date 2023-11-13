@@ -1,11 +1,10 @@
 #Moduler fra flask
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 import json
-
+from datetime import timedelta, datetime 
 app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'  # Dette skal være en stærk og unik nøgle
-
 
 users= []
 
@@ -83,9 +82,9 @@ def add_new():
                 # Check if the new email is already used (excluding the current user)
                 if not check_used_username_or_email(un, em, exclude_user_id=id):
                     # Update the user's information
-                    users[id]['email'] = em
-                    users[id]['username'] = un
-                    users[id]['password'] = pw
+                    users[id]['em'] = em
+                    users[id]['un'] = un
+                    users[id]['pw'] = pw
 
                     fixShitPlease()
                     return redirect("/") 
@@ -144,6 +143,26 @@ def createuser():
     else:
         return render_template("createnewuser.html", users = users )
 
+# Function to check if the user is logged in and update the last activity time
+def check_login_status():
+    if 'logged_in' in session:
+        session['last_activity'] = datetime.now()
+
+
+@app.before_request
+def before_request():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=20)
+    session.modified = True
+    check_login_status()
+
+    # Check for inactivity and log out if the time has passed
+    if 'last_activity' in session:
+        inactive_duration = datetime.now() - session['last_activity']
+        if inactive_duration > timedelta(minutes=20):
+            session.clear()
+            flash('You have been logged out due to inactivity.', 'info')
+            return redirect("/login")
 
 
 @app.route("/login", methods=["post", "get"])
@@ -157,6 +176,7 @@ def login():
             session['logged_in'] = True
             admin_usernames = ['Vedad', 'Linus']
             session['admin'] = True if username in admin_usernames else False
+            session.permanent = False  # Set session to expire when the browser is closed
             return redirect("/")
         else:
             return render_template("login.html", failure=True)
@@ -165,8 +185,6 @@ def login():
 
 @app.route("/logout")
 def logout():
-    session.pop('logged_in', None)
-    session.pop('username', None)
     session.clear()
     return redirect("/")
 
