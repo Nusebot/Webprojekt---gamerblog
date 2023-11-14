@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
+<html><head>
     <title>Gamerblog</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-pzjw8P+ua/2Ll+ndUtv3bOkk6FI+2Qvwq6Wui/hf4L+8Jp9dNOmgniE5OsBsiL5d" crossorigin="anonymous">
@@ -125,17 +122,16 @@
             {% if 'logged_in' not in session %}
             <a href="/login" class="login-btn">Login</a>
             {% else %}
-            <div class="dropdown">
-                <button class="dropbtn">
+            <div class="dropdown" style="height:10em;width:10em;">
+                <div>
                     <i class="fas fa-caret-down"></i>
-                    <img src="static/user-png-icon-big-image-png-2240-3296597834.png" style="width: 20px; height: 20px; margin-right: 5px;"
-                </button>                
+                    <img src="static/user-png-icon-big-image-png-2240-3296597834.png" style="width: 20px; height: 20px; margin-right: 5px;" <="" button="">                
                 <div class="dropdown-content">
                     <p>Username:</p>
                     <p>Mail:</p>
                     <a href="/logout" class="logout-btn">Log out</a>
                 </div>
-            </div>
+            </div></div>
             {% endif %}
         </div>
     </div>
@@ -143,6 +139,7 @@
         <h1>NEWS</h1><br><br>
         <img src="static/fortnite.jpg" style="width:150px;height:100px;">
     </div>
-</body>
 
-</html>
+
+
+</body></html>
