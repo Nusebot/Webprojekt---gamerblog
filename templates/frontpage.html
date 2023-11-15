@@ -2,6 +2,7 @@
     <title>Gamerblog</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-pzjw8P+ua/2Ll+ndUtv3bOkk6FI+2Qvwq6Wui/hf4L+8Jp9dNOmgniE5OsBsiL5d" crossorigin="anonymous">
+      
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -97,7 +98,7 @@
             background-color: #e68e8e;
         }
 
-        .dropdown:hover .dropdown-content {
+        .show {
             display: block;
         }
 
@@ -123,10 +124,10 @@
             <a href="/login" class="login-btn">Login</a>
             {% else %}
             <div class="dropdown" style="height:10em;width:10em;">
-                <div>
-                    <i class="fas fa-caret-down"></i>
-                    <img src="static/user-png-icon-big-image-png-2240-3296597834.png" style="width: 20px; height: 20px; margin-right: 5px;" <="" button="">                
-                <div class="dropdown-content">
+                    <button id="drop" class="dropbtn">
+                        <img src="static/userprofile.png" style="width: 20px; height: 20px; margin-right: 5px;">
+                    </button>                 
+                <div id="myDropdown" class="dropdown-content">
                     <p>Username:</p>
                     <p>Mail:</p>
                     <a href="/logout" class="logout-btn">Log out</a>
@@ -140,6 +141,19 @@
         <img src="static/fortnite.jpg" style="width:150px;height:100px;">
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("drop").addEventListener("click", function(e) {
+                document.getElementById("myDropdown").classList.toggle("show");
+            });
 
+            window.addEventListener("click", function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    document.querySelectorAll(".dropdown-content.show")
+                        .forEach(openDropdown => openDropdown.classList.remove('show'))
+                }
+            });
+        });
+    </script>
 
 </body></html>
