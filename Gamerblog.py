@@ -53,7 +53,11 @@ except:
 
 @app.route("/")
 def index():
-    return render_template("frontpage.html", users = users)
+    try:
+        username = session["username"]
+    except:
+        username = "Ikke logget ind."
+    return render_template("frontpage.html", username=username)
 
 
 @app.route("/admin_user_change", methods=["post", "get"])
@@ -173,6 +177,7 @@ def login():
         session['username'] = request.form['username']
 
         if validate_user(username, password):
+            session["username"] = username
             session['logged_in'] = True
             admin_usernames = ['Vedad', 'Linus']
             session['admin'] = True if username in admin_usernames else False

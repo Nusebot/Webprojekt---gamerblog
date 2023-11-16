@@ -1,12 +1,15 @@
-<html><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamerblog</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-pzjw8P+ua/2Ll+ndUtv3bOkk6FI+2Qvwq6Wui/hf4L+8Jp9dNOmgniE5OsBsiL5d" crossorigin="anonymous">
-      
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            margin: 0; /* Remove default margin */
+            margin: 0;
         }
 
         .navbar {
@@ -16,11 +19,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-        }
-
-        .left-buttons {
-            display: flex;
+            padding: 0 10px;
         }
 
         .navbar a {
@@ -31,12 +30,14 @@
             text-decoration: none;
         }
 
+        .left-buttons {
+            display: flex;
+        }
+
         .login-btn,
-        .admin-btn,
-        .logout-btn,
-        .dropbtn {
+        .admin-btn {
             background-color: white;
-            transition: background-color 0.3s; /* Adding smooth transition on background color change */
+            transition: background-color 0.3s;
         }
 
         .login-btn {
@@ -47,14 +48,6 @@
             background-color: #4fa9f2;
         }
 
-        .logout-btn {
-            background-color: #f23918;
-        }
-
-        .logout-btn:hover {
-            background-color: #f2624f;
-        }
-
         .admin-btn {
             background-color: #18f264;
         }
@@ -63,53 +56,100 @@
             background-color: #43e07a;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background-color: #333;
-            color: white;
-            padding: 14px 16px;
-            font-size: 16px;
-            border: none;
+        .user-pic {
+            width: 40px;
+            border-radius: 50%;
+            background-color: #f3efefb0;
             cursor: pointer;
+            margin-left: 10px;
         }
 
-        .dropdown-content {
-            display: none;
+        .sub-menu-wrap {
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+            top: 100;
+            right: 0%;
+            width: 320px;
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height 0.5s;
         }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
+        .sub-menu-wrap.open-menu {
+            max-height: 500px;
+        }
+
+        .sub-menu {
+            background: #f3efefb0;
+            padding: 18px; /* Decreased padding */
+            margin: 9px; /* Decreased margin */
+            font-size: 90%; /* Decreased font size */
+        }
+
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info h3 {
+            font-weight: 500;
+        }
+
+        .user-info img {
+            width: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .sub-menu hr {
+            border: 0;
+            height: 1px;
+            width: 100%;
+            background: #ccc;
+            margin: 15px 0 10px;
+        }
+
+        .sub-menu-link {
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            display: block;
-            text-align: left;
+            color: #525252;
+            margin: 10px 0 ; /* Decreased margin */
         }
 
-        .dropdown-content a:hover {
-            background-color: #e68e8e;
+        .sub-menu-link p{
+            width: 90%;
+            font-size: 90%;
+            color: black;
         }
 
-        .show {
-            display: block;
+        .sub-menu-link img {
+            width: 36px; /* Decreased width */
+            background: #e5e5e5;
+            border-radius: 50%;
+            padding: 7px; /* Decreased padding */
+            margin-right: 13px; /* Decreased margin */
         }
 
-        /* Adjust hover for all buttons except login and admin */
-        .navbar a:hover:not(.login-btn):not(.admin-btn):not(.logout-btn) {
+        .sub-menu-link span {
+            font-size: 20px; /* Decreased font size */
+            transition: transform 0.5s;
+            color: black;
+        }
+
+        .sub-menu-link:hover span{
+            transform: translateX(5px);
+        }
+
+        .sub-menu-link:hover p{
+            font-weight: 600;
+        }
+
+        .navbar a:hover:not(.login-btn):not(.admin-btn):not(.logout-btn):not(.sub-menu-link) {
             background-color: #928E8E;
         }
-
     </style>
 </head>
-
 <body>
     <div class="navbar">
         <div class="left-buttons">
@@ -118,21 +158,41 @@
         </div>
         <div class="right-buttons">
             {% if 'logged_in' and session.get('admin') %}
-            <a href="/admin_user_change" class="admin-btn">Admin</a>
+                <a href="/admin_user_change" class="admin-btn">Admin</a>
             {% endif %}
             {% if 'logged_in' not in session %}
-            <a href="/login" class="login-btn">Login</a>
+                <a href="/login" class="login-btn">Login</a>
             {% else %}
-            <div class="dropdown" style="height:10em;width:10em;">
-                    <button id="drop" class="dropbtn">
-                        <img src="static/userprofile.png" style="width: 20px; height: 20px; margin-right: 5px;">
-                    </button>                 
-                <div id="myDropdown" class="dropdown-content">
-                    <p>Username:</p>
-                    <p>Mail:</p>
-                    <a href="/logout" class="logout-btn">Log out</a>
+                <img src="static/userprofile.png" class="user-pic" onclick="toggleMenu()">
+                <div class="sub-menu-wrap" id="subMenu">
+                    <div class="sub-menu">
+                        <div class="user-info">
+                            <img src="static/userprofile.png">
+                            <h3>{{username}}</h3>
+                        </div>
+                        <hr>
+                        <a href="#" class="sub-menu-link">
+                            <img src="static/profile.png">
+                            <p>Edit Profile</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <img src="static/setting.png">
+                            <p>Settings & Privacy</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <img src="static/help.png">
+                            <p>Help & Support</p>
+                            <span>></span>
+                        </a>
+                        <a href="/logout" class="sub-menu-link">
+                            <img src="static/logout.png">
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
                 </div>
-            </div></div>
             {% endif %}
         </div>
     </div>
@@ -142,18 +202,11 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("drop").addEventListener("click", function(e) {
-                document.getElementById("myDropdown").classList.toggle("show");
-            });
+        let subMenu = document.getElementById("subMenu");
 
-            window.addEventListener("click", function(event) {
-                if (!event.target.matches('.dropbtn')) {
-                    document.querySelectorAll(".dropdown-content.show")
-                        .forEach(openDropdown => openDropdown.classList.remove('show'))
-                }
-            });
-        });
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
     </script>
-
-</body></html>
+</body>
+</html>
