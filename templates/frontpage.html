@@ -163,6 +163,18 @@
         border-radius: 5px;
         background-color: #616161;
         }
+        .game-container {
+        border: 2px solid #333;
+        background-color: #333; 
+        color: #fff;
+        padding: 10px; 
+        box-sizing: border-box;
+        margin: 25px;
+        }
+        .game-container-wrapper {
+        display: flex;
+        justify-content: flex-end; /* Juster denne linje for at ændre justeringen mod højre */
+        }
     </style>
 </head>
 <body>
@@ -213,13 +225,11 @@
     </div>
     <div style="width: 150px; height: 100vh; border: 2px solid #333; border-radius: 0px; padding: 20px; text-align: center; font-size: 18px; background-color: #333;">
         <h1>NEWS</h1><br>
-
         <div class="image-container">
         <img src="static/fortnite.jpg" style="width:150px;height:100px;">
         <p class="fortnite-text">The new season in Fortnite has just launched!</p>
         <br><br><br><br>
     </div>
-
         <div class="image-container">
         <img src="static/Tim.jpg" style="width:150px;height:100px;">
         <p class="fortnite-text">TIm Sweeney have sold the game Fortnite!</p>
@@ -228,6 +238,23 @@
         <div class="image-container">
         <img src="static/hacked.jpg" style="width:150px;height:100px;">
         <p class="fortnite-text">Vedad-Gaming's account, worth over 30000€, got hacked!</p>
+    </div>
+    <div style="text-align: center; position: fixed; bottom: 0; width: 100%;">
+        <div style="display: flex; justify-content: space-evenly;">
+            <div class="game-container-wrapper">
+            <div class="game-container">
+            <img src="static/csgo.jpg" alt="Image 1" style="width: 350px; height: 300px;">
+            <p>The game CS:GO is an FPS-game that...</p>
+            </div>
+            <div class="game-container">
+            <img src="static/forza.jpg" alt="Image 2" style="width: 350px; height: 300px;">
+            <p>Forza Horizon 4 is an online car game which...</p>
+            </div>
+            <div class="game-container">
+            <img src="static/minecraft.jpg" alt="Image 3" style="width: 350px; height: 300px;">
+            <p>Minecraft, the worlds most famous sandbox...</p>
+            </div>
+        </div>
     </div>
 
     <script>
