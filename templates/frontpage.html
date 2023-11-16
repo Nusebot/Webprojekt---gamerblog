@@ -148,6 +148,21 @@
         .navbar a:hover:not(.login-btn):not(.admin-btn):not(.logout-btn):not(.sub-menu-link) {
             background-color: #928E8E;
         }
+        .fortnite-text {
+            font-family: verdana;
+            font-size: 10px;
+            color: #fff;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .image-container {
+        border: 3px solid #000000;
+        padding: -8px; 
+        width: 150px;
+        margin: 20px 0; 
+        border-radius: 5px;
+        background-color: #616161;
+        }
     </style>
 </head>
 <body>
@@ -196,9 +211,23 @@
             {% endif %}
         </div>
     </div>
-    <div style="width: 150px; height: 550px; border: 2px solid #333; border-radius: 0px; padding: 20px; text-align: center; font-size: 18px; background-color: #333;">
-        <h1>NEWS</h1><br><br>
+    <div style="width: 150px; height: 100vh; border: 2px solid #333; border-radius: 0px; padding: 20px; text-align: center; font-size: 18px; background-color: #333;">
+        <h1>NEWS</h1><br>
+
+        <div class="image-container">
         <img src="static/fortnite.jpg" style="width:150px;height:100px;">
+        <p class="fortnite-text">The new season in Fortnite has just launched!</p>
+        <br><br><br><br>
+    </div>
+
+        <div class="image-container">
+        <img src="static/Tim.jpg" style="width:150px;height:100px;">
+        <p class="fortnite-text">TIm Sweeney have sold the game Fortnite!</p>
+        <br><br><br><br>
+    </div>
+        <div class="image-container">
+        <img src="static/hacked.jpg" style="width:150px;height:100px;">
+        <p class="fortnite-text">Vedad-Gaming's account, worth over 30000€, got hacked!</p>
     </div>
 
     <script>
